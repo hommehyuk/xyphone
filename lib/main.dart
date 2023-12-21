@@ -33,7 +33,8 @@ class XylophoneApp extends StatefulWidget {
 class _XylophoneAppState extends State<XylophoneApp> {
   Soundpool pool = Soundpool.fromOptions(options: SoundpoolOptions.kDefault);
 
-  List<int> _sountdIds = [];
+  List<int> _soundIds = [];
+  bool _isLoading = true;
 
   @override
   void initState() {
@@ -46,49 +47,53 @@ class _XylophoneAppState extends State<XylophoneApp> {
         .load('assets/do1.wav')
         .then((soundData) => pool.load(soundData));
 
-    _sountdIds.add(soundId);
+    _soundIds.add(soundId);
 
     soundId = await rootBundle
         .load('assets/re.wav')
         .then((soundData) => pool.load(soundData));
 
-    _sountdIds.add(soundId);
+    _soundIds.add(soundId);
 
     soundId = await rootBundle
         .load('assets/mi.wav')
         .then((soundData) => pool.load(soundData));
 
-    _sountdIds.add(soundId);
+    _soundIds.add(soundId);
 
     soundId = await rootBundle
         .load('assets/fa.wav')
         .then((soundData) => pool.load(soundData));
 
-    _sountdIds.add(soundId);
+    _soundIds.add(soundId);
 
     soundId = await rootBundle
         .load('assets/sol.wav')
         .then((soundData) => pool.load(soundData));
 
-    _sountdIds.add(soundId);
+    _soundIds.add(soundId);
 
     soundId = await rootBundle
         .load('assets/ra.wav')
         .then((soundData) => pool.load(soundData));
 
-    _sountdIds.add(soundId);
+    _soundIds.add(soundId);
 
     soundId = await rootBundle
         .load('assets/si.wav')
         .then((soundData) => pool.load(soundData));
 
-    _sountdIds.add(soundId);
+    _soundIds.add(soundId);
 
     soundId = await rootBundle
         .load('assets/do2.wav')
         .then((soundData) => pool.load(soundData));
 
-    _sountdIds.add(soundId);
+    _soundIds.add(soundId);
+
+    setState(() {
+      _isLoading = false;
+    });
   }
 
   @override
@@ -99,55 +104,62 @@ class _XylophoneAppState extends State<XylophoneApp> {
       appBar: AppBar(
         title: const Text('실로폰'),
       ),
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: gunban('도', Colors.red),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 24.0),
-            child: gunban('레', Colors.orange),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 32.0),
-            child: gunban('미', Colors.yellow),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 40.0),
-            child: gunban('파', Colors.green),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 48.0),
-            child: gunban('솔', Colors.blue),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 56.0),
-            child: gunban('라', Colors.indigo),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 64.0),
-            child: gunban('시', Colors.purple),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 72.0),
-            child: gunban('도', Colors.red),
-          ),
-        ],
-      ),
+      body: _isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  child: gunban('도', Colors.red, _soundIds[0]),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 24.0),
+                  child: gunban('레', Colors.orange, _soundIds[0]),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 32.0),
+                  child: gunban('미', Colors.yellow, _soundIds[0]),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 40.0),
+                  child: gunban('파', Colors.green, _soundIds[0]),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 48.0),
+                  child: gunban('솔', Colors.blue, _soundIds[0]),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 56.0),
+                  child: gunban('라', Colors.indigo, _soundIds[0]),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 64.0),
+                  child: gunban('시', Colors.purple, _soundIds[0]),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 72.0),
+                  child: gunban('도', Colors.red, _soundIds[0]),
+                ),
+              ],
+            ),
     );
   }
 
-  Widget gunban(String text, Color color) {
-    return Container(
-      width: 50,
-      height: double.infinity,
-      color: color,
-      child: Center(
-        child: Text(
-          text,
-          style: TextStyle(color: Colors.white),
+  Widget gunban(String text, Color color, int soundId) {
+    return GestureDetector(
+      onTap: () {
+        pool.play(soundId);
+      },
+      child: Container(
+        width: 50,
+        height: double.infinity,
+        color: color,
+        child: Center(
+          child: Text(
+            text,
+            style: const TextStyle(color: Colors.white),
+          ),
         ),
       ),
     );
