@@ -115,31 +115,31 @@ class _XylophoneAppState extends State<XylophoneApp> {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 24.0),
-                  child: gunban('레', Colors.orange, _soundIds[0]),
+                  child: gunban('레', Colors.orange, _soundIds[1]),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 32.0),
-                  child: gunban('미', Colors.yellow, _soundIds[0]),
+                  child: gunban('미', Colors.yellow, _soundIds[2]),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 40.0),
-                  child: gunban('파', Colors.green, _soundIds[0]),
+                  child: gunban('파', Colors.green, _soundIds[3]),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 48.0),
-                  child: gunban('솔', Colors.blue, _soundIds[0]),
+                  child: gunban('솔', Colors.blue, _soundIds[4]),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 56.0),
-                  child: gunban('라', Colors.indigo, _soundIds[0]),
+                  child: gunban('라', Colors.indigo, _soundIds[5]),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 64.0),
-                  child: gunban('시', Colors.purple, _soundIds[0]),
+                  child: gunban('시', Colors.purple, _soundIds[6]),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 72.0),
-                  child: gunban('도', Colors.red, _soundIds[0]),
+                  child: gunban('도', Colors.red, _soundIds[7]),
                 ),
               ],
             ),
