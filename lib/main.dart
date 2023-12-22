@@ -74,7 +74,7 @@ class _XylophoneAppState extends State<XylophoneApp> {
     _soundIds.add(soundId);
 
     soundId = await rootBundle
-        .load('assets/ra.wav')
+        .load('assets/la.wav')
         .then((soundData) => pool.load(soundData));
 
     _soundIds.add(soundId);
